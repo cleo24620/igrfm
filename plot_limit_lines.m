@@ -7,15 +7,16 @@ axis_font = 12;
 title_font = 12;
 
 time = datenum([2007 7 17 6 30 0]);
-lat_start = 52; % Geodetic latitude in degrees.
-lon_start = 200; % Geodetic longitude in degrees.
-alt_start = 400; % Altitude in km.
-distance = -90e3; % km.
+lat_start = 60; % Geodetic latitude in degrees.
+lon_start = 20; % Geodetic longitude in degrees.
+alt_start = 0; % Altitude in km.
+distance = -1e8; % km.
 nsteps = abs(distance)/1;
 spin = false;
 
 [lat, lon, alt] = igrfline(time, lat_start, lon_start, alt_start, 'geod', distance, nsteps);
-limit_alt = and(alt >= 20, alt <= 3000);
+% limit_alt = and(alt >= 20, alt <= 3000);
+limit_alt = alt>-1;
 lat = lat(limit_alt); lon = lon(limit_alt); alt = alt(limit_alt);
 lon(lon > 180) = lon(lon > 180) - 360;
 for_group = lat_start > 0;
