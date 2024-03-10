@@ -1,0 +1,4 @@
+currentDir = pwd;
+subfolderName = 'lines_data';
+
+subfolderPath = 
