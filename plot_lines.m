@@ -46,7 +46,7 @@ for lat_start = lat_starts
         lat = lat(limit_alt); lon = lon(limit_alt); alt = alt(limit_alt);
         lon(lon > 180) = lon(lon > 180) - 360;
 
-        filename = fullfile(subfolderPath, sprintf('%s_%s_%s_%s.mat', time_str, num2str(lat_start), num2str(lon_start), num2str(alt_start)));
+        filename = fullfile(subfolderPath, sprintf('20070717063000_%s_%s_%s.mat', num2str(lat_start), num2str(lon_start), num2str(alt_start)));
         save(filename, 'lat', 'lon', 'alt');
     
 %         % Convert lla to xyz.
