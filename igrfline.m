@@ -88,6 +88,8 @@ theta = [theta; zeros(nsteps, 1)];
 index = 1;
 while (r(index)-6000) > 0
     
+    % 如果超过纬度80，追踪步数过大，可能导致内存不够，
+    % 此时采用igrfLimitLine.m进行限制范围内的磁力线追踪。 
     % Get magnetic field at this point. Note that IGRF outputs the
     % Northward (x), Eastward (y), and Downward (z) components, but we want
     % the radial (-z), azimuthal (y), and elevation (x) components

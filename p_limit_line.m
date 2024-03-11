@@ -7,7 +7,7 @@ axis_font = 12;
 title_font = 12;
 
 time = datenum([2007 7 17 6 30 0]);
-lat_start = 70; % Geodetic latitude in degrees.
+lat_start = 80; % Geodetic latitude in degrees.
 lon_start = 20; % Geodetic longitude in degrees.
 alt_start = 0; % Altitude in km.
 distance = -1e8; % km.
