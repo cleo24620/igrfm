@@ -1,5 +1,5 @@
 function [latitude, longitude, altitude] = igrfLimitLine(time, lat_start, ...
-    lon_start, alt_start, coord, distance, nsteps)
+    lon_start, alt_start, coord, steplen)
 
 % IGRFLINE Trace IGRF magnetic field line.
 % 
@@ -54,10 +54,7 @@ function [latitude, longitude, altitude] = igrfLimitLine(time, lat_start, ...
 % 
 % See also: IGRF, GETIGRFCOEFS, LOADIGRFCOEFS, DATENUM.
 
-error(nargchk(7, 7, nargin));
-
-% Length of each step.
-steplen = distance/abs(nsteps);
+error(nargchk(6, 6, nargin));
 
 % Convert from geodetic coordinates to geocentric coordinates if necessary.
 % The coordinate system used here is spherical coordinates (r,phi,theta)
@@ -80,13 +77,15 @@ end
 gh = loadigrfcoefs(time);
 
 % Initialize for loop.
+nsteps = 1e7;
 r = [r; zeros(nsteps, 1)];
 phi = [phi; zeros(nsteps, 1)];
 theta = [theta; zeros(nsteps, 1)];
 
 % for index = 1:nsteps
 index = 1;
-while ((r(index)-6000) > 0) && (r(index) < 6000+3e3)
+% while ((r(index)-6378) > 0) && (r(index) < 6000+3e3)
+while ((r(index)-6e3) > 0) && (index < nsteps)
     
     % Get magnetic field at this point. Note that IGRF outputs the
     % Northward (x), Eastward (y), and Downward (z) components, but we want
